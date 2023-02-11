@@ -1,6 +1,7 @@
 package com.example.tip
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
@@ -11,6 +12,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.tip.ui.theme.TipTheme
@@ -43,13 +45,16 @@ fun TipScreen() {
     var amount by remember { mutableStateOf("") }
     var tip by remember { mutableStateOf("") }
 
+    val context = LocalContext.current
+
     fun updateAmount(s: String){
         amount =s
     }
 
     fun cal(num: Double){
         //return 15.div(100).times(num).toString()
-        tip = "KES" + num.times(0.15)
+        tip = "KES " + num.times(0.15)
+        Toast.makeText(context, tip, Toast.LENGTH_SHORT).show()
     }
 
     Column(
